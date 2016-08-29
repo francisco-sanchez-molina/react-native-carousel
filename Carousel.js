@@ -143,6 +143,7 @@ var Carousel = React.createClass({
           contentContainerStyle={styles.container}
           onBegin={this._onAnimationBeginPage}
           onEnd={this._onAnimationEnd}
+          isHorizontal={this.props.isHorizontal}
         >
           {this.props.children}
         </CarouselPager>
@@ -152,6 +153,10 @@ var Carousel = React.createClass({
   },
 
 });
+
+Carousel.defaultProps = {
+  isHorizontal: true,
+};
 
 var styles = StyleSheet.create({
   pageIndicator: {

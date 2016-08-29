@@ -10,7 +10,7 @@ var {
 
 var TimerMixin = require('react-timer-mixin');
 var CarouselPager = require('./CarouselPager');
-
+var dimensions = Dimensions.get('window');
 var Carousel = React.createClass({
   mixins: [TimerMixin],
 
@@ -43,9 +43,18 @@ var Carousel = React.createClass({
     if (this.props.width !== null) {
       return this.props.width;
     } else {
-      return Dimensions.get('window').width;
+      return dimensions.width;
     }
   },
+
+  getHeight() {
+    if (this.props.height !== null) {
+      return this.props.height;
+    } else {
+      return dimensions.height;
+    }
+  },
+
 
   componentDidMount() {
     if (this.props.initialPage > 0) {
@@ -140,6 +149,7 @@ var Carousel = React.createClass({
         <CarouselPager
           ref="pager"
           width={this.getWidth()}
+          height={this.getHeight()}
           contentContainerStyle={styles.container}
           onBegin={this._onAnimationBeginPage}
           onEnd={this._onAnimationEnd}

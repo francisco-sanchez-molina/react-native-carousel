@@ -9,11 +9,21 @@ var CarouselPager = React.createClass({
     if (typeof animated === 'undefined') {
       animated = true;
     }
-    this.refs.scrollView.scrollTo({x: page * this.props.width, y: 0, animated: animated});
+
+    if (this.props.isHorizontal) {
+      this.refs.scrollView.scrollTo({x: page * this.props.width, y: 0, animated: animated});
+    } else {
+      this.refs.scrollView.scrollTo({x: page * this.props.height, y: 0, animated: animated});
+    }
   },
 
   _onMomentumScrollEnd(e) {
-    var activePage = e.nativeEvent.contentOffset.x / this.props.width;
+    if (this.props.isHorizontal) {
+      var activePage = e.nativeEvent.contentOffset.x / this.props.width;
+    } else {
+      var activePage = e.nativeEvent.contentOffset.y / this.props.height;
+    }
+
     this.props.onEnd(activePage);
   },
 

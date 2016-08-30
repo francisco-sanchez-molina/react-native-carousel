@@ -81,10 +81,6 @@ var Carousel = React.createClass({
         indicatorStyle = this.props.indicatorAtBottom ? { bottom: this.props.indicatorOffset } : { top: this.props.indicatorOffset },
         style, position;
 
-    position = {
-      width: this.props.children.length * this.props.indicatorSpace,
-    };
-    position.left = (this.getWidth() - position.width) / 2;
 
     for (var i = 0, l = this.props.children.length; i < l; i++) {
       if (typeof this.props.children[i] === "undefined") {
@@ -94,7 +90,7 @@ var Carousel = React.createClass({
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
       indicators.push(
          <Text
-            style={[style, { fontSize: this.props.indicatorSize }]}
+            style={[style, { fontSize: this.props.indicatorSize, lineHeight: this.props.indicatorSize - 4 }]}
             key={i}
             onPress={this.indicatorPressed.bind(this,i)}
           >
@@ -108,7 +104,7 @@ var Carousel = React.createClass({
     }
 
     return (
-      <View style={[styles.pageIndicator, position, indicatorStyle]}>
+      <View style={[styles.pageIndicator, this.props.pagerContainerStyle]}>
         {indicators}
       </View>
     );
@@ -146,18 +142,19 @@ var Carousel = React.createClass({
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <CarouselPager
-          ref="pager"
-          width={this.getWidth()}
-          height={this.getHeight()}
-          contentContainerStyle={styles.container}
-          onBegin={this._onAnimationBeginPage}
-          onEnd={this._onAnimationEnd}
-          isHorizontal={this.props.isHorizontal}
-        >
-          {this.props.children}
-        </CarouselPager>
+      <View style={[{ flex: 1 }, this.props.style]}>
+        <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
+          <CarouselPager
+            ref="pager"
+            width={this.getWidth()}
+            height={this.getHeight()}
+            contentContainerStyle={styles.container}
+            onBegin={this._onAnimationBeginPage}
+            onEnd={this._onAnimationEnd}
+            isHorizontal={this.props.isHorizontal}
+            children={this.props.children}
+          />
+        </View>
         {this.renderPageIndicator()}
       </View>
     );

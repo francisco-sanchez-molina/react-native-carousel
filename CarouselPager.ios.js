@@ -13,7 +13,7 @@ var CarouselPager = React.createClass({
     if (this.props.isHorizontal) {
       this.refs.scrollView.scrollTo({x: page * this.props.width, y: 0, animated: animated});
     } else {
-      this.refs.scrollView.scrollTo({x: page * this.props.height, y: 0, animated: animated});
+      this.refs.scrollView.scrollTo({y: page * this.props.height, x: 0, animated: animated});
     }
   },
 

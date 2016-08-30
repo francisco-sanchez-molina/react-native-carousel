@@ -16,6 +16,7 @@ var Carousel = React.createClass({
 
   getDefaultProps() {
     return {
+      isHorizontal: true,
       hideIndicators: false,
       indicatorColor: '#000000',
       indicatorSize: 50,
@@ -164,9 +165,6 @@ var Carousel = React.createClass({
 
 });
 
-Carousel.defaultProps = {
-  isHorizontal: true,
-};
 
 var styles = StyleSheet.create({
   pageIndicator: {

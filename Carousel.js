@@ -87,7 +87,7 @@ var Carousel = React.createClass({
         continue;
       }
 
-      style = i === this.state.activePage ? this.props.indicatorStyle : this.props.activeIndicatorStyle;
+      style = i !== this.state.activePage ? this.props.indicatorStyle : this.props.activeIndicatorStyle;
       indicators.push(
          <Text
             style={[style, { fontSize: this.props.indicatorSize, lineHeight: this.props.indicatorSize - 4 }]}

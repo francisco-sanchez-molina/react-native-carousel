@@ -87,14 +87,14 @@ var Carousel = React.createClass({
         continue;
       }
 
-      style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
+      style = i === this.state.activePage ? this.props.indicatorStyle : this.props.activeIndicatorStyle;
       indicators.push(
          <Text
             style={[style, { fontSize: this.props.indicatorSize, lineHeight: this.props.indicatorSize - 4 }]}
             key={i}
             onPress={this.indicatorPressed.bind(this,i)}
           >
-             { i === this.state.activePage  ? this.props.indicatorText : this.props.inactiveIndicatorText }
+             {i === this.state.activePage  ? this.props.indicatorText : this.props.inactiveIndicatorText}
           </Text>
       );
     }

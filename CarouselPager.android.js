@@ -24,7 +24,7 @@ var CarouselPager = React.createClass({
 
   render() {
     return <ViewPagerAndroid
-      ref="viewPager"
+      ref={(viewPager) => this.refs = { viewPager }}
       style={{flex: 1}}
       contentContainerStyle={this.props.contentContainerStyle}
       automaticallyAdjustContentInsets={false}

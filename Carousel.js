@@ -145,6 +145,7 @@ var Carousel = React.createClass({
       <View style={[{ flex: 1 }, this.props.style]}>
         <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'transparent' }}>
           <CarouselPager
+            scrollViewProps={this.props.scrollViewProps}
             ref={(pager) => this.refs= { pager }}
             width={this.getWidth()}
             height={this.getHeight()}
